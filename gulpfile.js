@@ -31,13 +31,10 @@ gulp.task('css', function () {
 
 gulp.task('js', function () {
     return gulp.src([
-            './src/assets/js/jquery.js',
-            './src/assets/js/popper.js',
-            './src/assets/js/bootstrap.js',
             './src/assets/js/app.js',
         ])
         .pipe(uglify())
-        .pipe(concat('vendor.js'))
+        .pipe(concat('app.min.js'))
         .pipe(gulp.dest(distPath + '/assets/js/'))
         .pipe(livereload())
 });
