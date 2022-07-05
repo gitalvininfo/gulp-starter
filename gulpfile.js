@@ -27,7 +27,7 @@ gulp.task('html', function () {
 
 gulp.task('css', function () {
     return gulp.src([
-            './src/assets/css/bootstrap.css'
+            './src/assets/css/bootstrap.min.css'
         ])
         .pipe(concat('bootstrap.min.css'))
         .pipe(minifyCSS())
@@ -38,11 +38,14 @@ gulp.task('css', function () {
 
 gulp.task('js', function () {
     return gulp.src([
+            './src/assets/js/jquery.js',
+            './src/assets/js/popper.js',
+            './src/assets/js/bootstrap.js',
             './src/assets/js/data.js',
             './src/assets/js/app.js',
         ])
-        .pipe(uglify())
-        .pipe(concat('app.min.js'))
+        // .pipe(uglify())
+        // .pipe(concat('app.min.js'))
         .pipe(gulp.dest(distPath + '/assets/js/'))
         .pipe(livereload())
 });
@@ -58,12 +61,12 @@ gulp.task('watch', function () {
 
 
 gulp.task('webserver', function () {
-    gulp.src(distPath)
+    gulp.src(src)
         .pipe(webserver({
             host: 'localhost',
             livereload: true,
             directoryListing: false,
-            open: '/dist/',
+            open: '/',
             fallback: 'index.html'
         }));
 });
